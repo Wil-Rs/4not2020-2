@@ -51,4 +51,33 @@ controller.novo = async (req, res) => {
     
 }
 
+//Operacao Retrieve (all), funcao lista
+controller.listar = async (req, res) => {
+    try{
+        let dados = await Curso.find() //traz todos os cursos cadastrados.
+        res.status(200).send(dados)
+    }
+    catch(erro) {
+        console.log(erro)
+        res.status(500).send(erro)
+    }
+} 
+
+controller.obterUm = async (req, res) => {
+    // capturando o parametro id da url
+    try{
+        const id = req.params.id
+        let obj = await Curso.findById(id)
+
+        // o objeto existe e foi encontrado
+        if(obj)res.send(obj) // http 200
+        //nao encontrado
+        else res.status(404).end() // http 404: not found
+    }
+    catch(erro) {
+        console.log(erro)
+        res.status(500).send(erro)
+    }
+}
+
 module.exports = controller
