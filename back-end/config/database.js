@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
 module.exports = uri => {
     mongoose.connect(uri, {
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
+        useCreateIndex: true
     })
     // Quando conectado com sucesso imprime essa menssagem no console...
     mongoose.connection.on('connected', () => {

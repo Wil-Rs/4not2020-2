@@ -28,7 +28,7 @@
 
 // Controller é um conjunto de funcoes associadas as operacoes sobre dados
 
-const Curso = require('../models/Curso')
+const Professor = require('../models/Professor')
 
 const controller = {} // Objecto vazio
 
@@ -39,7 +39,7 @@ controller.novo = async (req, res) => {
     // Usa os dados que chegam dentro do body da requisicao
     // e os envia o DB para a criacao de um novo objeto
     try {
-        await Curso.create(req.body)
+        await Professor.create(req.body)
         // HTTP 201: Created
         res.status(201).end()
     }
@@ -54,7 +54,7 @@ controller.novo = async (req, res) => {
 //Operacao Retrieve (all), funcao lista
 controller.listar = async (req, res) => {
     try{
-        let dados = await Curso.find() //traz todos os cursos cadastrados.
+        let dados = await Professor.find() //traz todos os cursos cadastrados.
         res.status(200).send(dados)
     }
     catch(erro) {
@@ -67,7 +67,7 @@ controller.obterUm = async (req, res) => {
     // capturando o parametro id da url
     try{
         const id = req.params.id
-        let obj = await Curso.findById(id)
+        let obj = await Professor.findById(id)
 
         // o objeto existe e foi encontrado
         if(obj)res.send(obj) // http 200
@@ -87,7 +87,7 @@ controller.atualizar = async (req, res) => {
         const id = req.body._id
 
         //Busca e substituicao do conteudo do objeto
-        let ret = await Curso.findByIdAndUpdate(id, req.body)
+        let ret = await Professor.findByIdAndUpdate(id, req.body)
 
         // se encontrou e altualizou, retornamos HTTP 204: NO content
         if(ret) res.status(204).end()
@@ -107,7 +107,7 @@ controller.excluir = async (req, res) => {
         const id = req.body._id
 
         // Busca pelo id e exclusao
-        let  ret = await Curso.findByIdAndDelete(id)
+        let  ret = await Professor.findByIdAndDelete(id)
 
         // Encontrou e excluiu, HTTP 204: No content
         if(ret) res.status(204).end()
