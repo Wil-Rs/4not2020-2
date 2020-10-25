@@ -1,43 +1,43 @@
 /*
-    Operacaoes basicas sobre dados
 
-    1) CREATE ( cria ou insercao )
-        cria um novo objeto dentro do banco de dados
+    OPERAÇÕES BÁSICAS SOBRE DADOS
 
-    2) RETRIEVE ( recuperar ou listar )
-        Obrter de volta um ou mais objetos preexistente no banco de dados
+    1) CREATE (criação ou inserção)
+        Cria um novo objeto dentro do banco de dados
+
+    2) RETRIEVE (recuperar ou listar)
+        Obter de volta um ou mais objetos preexistentes no banco de dados
 
     3) UPDATE
-        Atualizar os dados de um objeto preextente no banco de dados
+        Atualizar os dados de um objeto preexistente no banco de dados
 
     4) DELETE
-        Exclusao de um objetos do banco de dados
+        Exclusão de um objeto do banco de dados
 
-    (C)reate + (R)etrieve + (U)pdate + (D)elete = Sigla CRUD
+    (C)reate + (R)etrieve + (U)pdate + (D)elete = sigla CRUD
 
-    ==================================================================================
+    ============================================================
 
     Verbos do protocolo HTTP
 
-    Verbo                              Operacao
-    POST                               CREATE
-    GET                                RETRIEVE
-    PUT                                UPDATE
-    DELETE                             DELETE
+    Verbo                   Operação
+    POST                    CREATE
+    GET                     RETRIEVE
+    PUT                     UPDATE
+    DELETE                  DELETE
+
 */
 
-// Controller é um conjunto de funcoes associadas as operacoes sobre dados
+// Controller é um conjunto de funções associadas às operações sobre dados
 
 const Curso = require('../models/Curso')
 
-const controller = {} // Objecto vazio
+const controller = {}   // Objeto vazio
 
-// Operacao CREATE, funcao novo()
-
-// requisicao e resposta
+// Operação CREATE, função novo()
 controller.novo = async (req, res) => {
-    // Usa os dados que chegam dentro do body da requisicao
-    // e os envia o DB para a criacao de um novo objeto
+    // Usa os dados que chegam dentro do body da requisição
+    // e os envia o BD para a criação de um novo objeto
     try {
         await Curso.create(req.body)
         // HTTP 201: Created
@@ -45,34 +45,34 @@ controller.novo = async (req, res) => {
     }
     catch(erro) {
         console.log(erro)
-        // HTTP 500: Intenal Server Error
+        // HTTP 500: Internal Server Error
         res.status(500).send(erro)
     }
-    
 }
 
-//Operacao Retrieve (all), funcao lista
+// Operação RETRIEVE (all), função listar()
 controller.listar = async (req, res) => {
-    try{
-        let dados = await Curso.find() //traz todos os cursos cadastrados.
-        res.status(200).send(dados)
+    try {
+        let dados = await Curso.find() // Traz todos os cursos cadastrados
+        res.send(dados) // Vai com status HTTP 200: OK
     }
     catch(erro) {
         console.log(erro)
         res.status(500).send(erro)
     }
-} 
+}
 
+// Operação RETRIEVE (one), função obterUm()
 controller.obterUm = async (req, res) => {
-    // capturando o parametro id da url
-    try{
+    try {
+        // Capturando o parâmetro id da URL
         const id = req.params.id
         let obj = await Curso.findById(id)
 
-        // o objeto existe e foi encontrado
-        if(obj)res.send(obj) // http 200
-        //nao encontrado
-        else res.status(404).end() // http 404: not found
+        // O objeto existe e foi encontrado
+        if(obj) res.send(obj)       // HTTP 200
+        // Não encontrado
+        else res.status(404).end()  // HTTP 404: Not found
     }
     catch(erro) {
         console.log(erro)
@@ -80,45 +80,44 @@ controller.obterUm = async (req, res) => {
     }
 }
 
-// Operacao UPDATE, funcao atualizar
+// Operação UPDATE, função atualizar()
 controller.atualizar = async (req, res) => {
-    // isolar o  _id objeto que esta sendo alterado
     try {
+        // Isola o _id do objeto que está sendo alterado
         const id = req.body._id
-
-        //Busca e substituicao do conteudo do objeto
+        
+        // Busca e substituição do conteúdo do objeto
         let ret = await Curso.findByIdAndUpdate(id, req.body)
 
-        // se encontrou e altualizou, retornamos HTTP 204: NO content
+        // Se encontrou e atualizou, retornamos HTTP 204: No content
         if(ret) res.status(204).end()
-        // Nao encontrou o objeto para ser alterado , retorna HTTP 404: not found
+        // Não encontrou o objeto para ser alterado, retorno HTTP 404: Not found
         else res.status(404).end()
     }
-    catch(erro){
+    catch(erro) {
         console.log(erro)
         res.status(500).send(erro)
     }
 }
 
-// Operaco DELETE, funcao excluir()
+// Operação DELETE, função excluir()
 controller.excluir = async (req, res) => {
     try {
         // Isolando o id
         const id = req.body._id
-
-        // Busca pelo id e exclusao
-        let  ret = await Curso.findByIdAndDelete(id)
+        
+        // Busca pelo id e exclusão
+        let ret = await Curso.findByIdAndDelete(id)
 
         // Encontrou e excluiu, HTTP 204: No content
         if(ret) res.status(204).end()
-        // Nao encontrado, HTTP 404: not found
+        // Não encontrou, HTTP 404: Not found
         else res.status(404).end()
     }
-    catch(erro){
+    catch(erro) {
         console.log(erro)
         res.status(500).send(erro)
     }
-
 }
 
 module.exports = controller
