@@ -9,13 +9,15 @@ import { MainToolbarComponent } from './ui/main-toolbar/main-toolbar.component';
 import { MainFooterComponent } from './ui/main-footer/main-footer.component';
 import { MainMenuComponent } from './ui/main-menu/main-menu.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CursoListComponent } from './curso/curso-list/curso-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainToolbarComponent,
     MainFooterComponent,
-    MainMenuComponent
+    MainMenuComponent,
+    CursoListComponent
   ],
   imports: [
     BrowserModule,

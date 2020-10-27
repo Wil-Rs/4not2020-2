@@ -1,0 +1,33 @@
+<!-- cursos no lugar de "dataSource" -->
+<table mat-table [dataSource]="cursos" class="mat-elevation-z8">
+
+  <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+  <!-- Nome Column -->
+  <ng-container matColumnDef="nome">
+    <th mat-header-cell *matHeaderCellDef> Curso </th>
+    <td mat-cell *matCellDef="let curso"> {{curso.nome}} </td>
+  </ng-container>
+
+  <!-- Carga Horaria Column -->
+  <ng-container matColumnDef="carga_horaria">
+    <th mat-header-cell *matHeaderCellDef> CH </th>
+    <td mat-cell *matCellDef="let curso"> {{curso.carga_horaria}} </td>
+  </ng-container>
+
+  <!-- Nivel Column -->
+  <ng-container matColumnDef="nivel">
+    <th mat-header-cell *matHeaderCellDef> Nível </th>
+    <td mat-cell *matCellDef="let curso"> {{curso.nivel}} </td>
+  </ng-container>
+
+  <!-- Valor Column -->
+  <ng-container matColumnDef="valor">
+    <th mat-header-cell *matHeaderCellDef> Valor </th>
+    <td mat-cell *matCellDef="let curso"> {{curso.valor_curso}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

@@ -10,9 +10,14 @@ const db = require('./config/database')
 const dbUser = process.env.DB_USER
 const dbPass = process.env.DB_PASS
 const dbName = process.env.DB_NAME
-db(`mongodb+srv://${dbUser}:${dbPass}@cluster0.bfcxt.gcp.mongodb.net/${dbName}?retryWrites=true&w=majority`)
+db(`mongodb+srv://${dbUser}:${dbPass}@cluster0.0jfn7.gcp.mongodb.net/${dbName}?retryWrites=true&w=majority`)
 
 var app = express();
+
+// habilita a chamada do back-end a partir de um sercidor distinto
+// é necessario instalor => cors
+const cors = require('cors')
+app.use( cors() )
 
 app.use(logger('dev'));
 app.use(express.json());
