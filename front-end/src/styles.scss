@@ -18,13 +18,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 // desaparece os botoes editar e excluir das tabelas listagem
 
-.mat-row .mat-raised-buttom {
+.mat-row .mat-raised-button {
     visibility: hidden;
 }
 
 // reexibe
 
-.mat-row:hover .mat-raised-buttom {
+.mat-row:hover .mat-raised-button {
     visibility: visible;
 }
 
