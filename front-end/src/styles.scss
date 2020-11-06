@@ -2,3 +2,33 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+#contendt {
+    margin: 20px;
+}
+
+.cell-align-right {
+    text-align: right !important;
+}
+
+.cell-align-center {
+    text-align: center !important;
+}
+
+// desaparece os botoes editar e excluir das tabelas listagem
+
+.mat-row .mat-raised-buttom {
+    visibility: hidden;
+}
+
+// reexibe
+
+.mat-row:hover .mat-raised-buttom {
+    visibility: visible;
+}
+
+// coloca um leve destaque
+.mat-row:hover {
+    filter: brightness(110%)
+}
