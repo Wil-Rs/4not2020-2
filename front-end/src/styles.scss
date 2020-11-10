@@ -32,3 +32,13 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .mat-row:hover {
     filter: brightness(110%)
 }
+
+.new-item {
+    background-color: transparent;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    justify-content: flex-end ;
+    a{
+        font-size: 110%;
+    }
+}

@@ -1,5 +1,12 @@
 <h1>Listagem de cursos</h1>
 
+<mat-toolbar class="new-item">
+    <a mat-raised-button color="accent" [routerLink]="['/curso/novo']">
+        <mat-icon>add_circle</mat-icon>
+        Novo curso
+    </a>
+</mat-toolbar>
+
 <!-- cursos no lugar de "dataSource" -->
 <table mat-table [dataSource]="cursos" class="mat-elevation-z4">
 
@@ -47,7 +54,7 @@
   <ng-container matColumnDef="editar">
     <th mat-header-cell class="cell-align-center" *matHeaderCellDef> Editar </th>
     <td mat-cell class="cell-align-center" *matCellDef="let curso"> 
-       <a mat-raised-button title="Editar" color="accent">
+       <a mat-raised-button title="Editar" [routerLink]="['/curso', curso._id]" color="accent" >
         <mat-icon>edit</mat-icon>
        </a>
     </td>

@@ -20,6 +20,8 @@ import { MainFooterComponent } from './ui/main-footer/main-footer.component';
 import { MainMenuComponent } from './ui/main-menu/main-menu.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CursoListComponent } from './curso/curso-list/curso-list.component';
+import { CursoFormComponent } from './curso/curso-form/curso-form.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -27,14 +29,16 @@ import { CursoListComponent } from './curso/curso-list/curso-list.component';
     MainToolbarComponent,
     MainFooterComponent,
     MainMenuComponent,
-    CursoListComponent
+    CursoListComponent,
+    CursoFormComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
