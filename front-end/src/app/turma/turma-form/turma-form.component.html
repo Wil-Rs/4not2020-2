@@ -1,0 +1,50 @@
+<h1>{{ title }}</h1>
+
+<form class="std-form" #f="ngForm" (ngSubmit)="salvar(f)">
+
+	<mat-form-field>
+		<mat-label>Nome do turma</mat-label>
+		<input matInput placeholder="Informe o nome do turma"
+      [(ngModel)]="turma.nome" name="nome" required>
+  </mat-form-field>
+
+		<mat-form-field>
+			<mat-label>Ementa</mat-label>
+			<textarea matInput [(ngModel)]="turma.ementa"
+      placeholder="Informe a ementa do turma"
+      name="ementa" rows="3" required></textarea>
+		</mat-form-field>
+
+	<mat-form-field>
+    <mat-label>Carga horária</mat-label>
+    <input matInput type="number" [(ngModel)]="turma.carga_horaria"
+      name="carga_horaria" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Nível</mat-label>
+    <mat-select [(ngModel)]="turma.nivel" name="nivel" required>
+      <mat-option *ngFor="let nivel of niveis" [value]="nivel.valor">
+        {{ nivel.valor }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Valor do turma</mat-label>
+    <input matInput type="number" [(ngModel)]="turma.valor_turma"
+      name="valor_turma" required>
+  </mat-form-field>
+
+  <mat-toolbar class="form-buttons">
+      <mat-toolbar-row>
+         <button mat-raised-button type="submit" color="accent">
+            Salvar
+         </button>
+         <button mat-raised-button type="button" (click)="voltar(f)">
+            Voltar
+         </button>
+      </mat-toolbar-row>
+   </mat-toolbar>
+
+</form>

@@ -57,3 +57,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
         justify-content: space-around;
     }
 }
+
+.mat-table {
+    min-width: 320px;
+    max-width: 1000px;
+    overflow-x: scroll;
+}

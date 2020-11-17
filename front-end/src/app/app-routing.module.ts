@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { CursoListComponent } from './curso/curso-list/curso-list.component';
 import { CursoFormComponent } from './curso/curso-form/curso-form.component';
+import { TurmaListComponent } from './turma/turma-list/turma-list.component';
 
 const routes: Routes = [
     {
@@ -14,6 +15,9 @@ const routes: Routes = [
     },{
         path: 'curso/:id', 
         component: CursoFormComponent
+    },{
+        path: 'turma',
+        component: TurmaListComponent
     }
 ];
 
